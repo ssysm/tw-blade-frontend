@@ -1,0 +1,15 @@
+.logo{
+  text-align: center;
+  margin-top: 32px;
+}
+.logo > a{
+  font-size: 26px !important;
+  color: deepskyblue;
+}
+.sidenav > li{
+  padding: 5px;
+}
+.sidenav > li > a{
+  font-size: 26px;
+  text-align: center;
+}
