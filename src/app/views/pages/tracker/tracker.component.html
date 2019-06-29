@@ -1,0 +1,89 @@
+<div class="container">
+  <h3 style="text-align: center;">Tracker管理</h3>
+  <!--Add New Tracker-->
+  <ul class="collapsible" #collapsible>
+    <li>
+      <div class="collapsible-header"><i class="material-icons">flight_takeoff</i>Add New Tracker</div>
+      <div class="collapsible-body">
+        <div class="row">
+          <form class="col s12">
+            <div class="input-field col s6">
+              <input placeholder="ssysm2" id="username" type="text" class="validate" [(ngModel)]="username" [ngModelOptions]="{standalone: true}">
+              <label for="username">Username (without @)</label>
+            </div>
+            <div class="input-field col s4">
+              <input placeholder="The NACCMG" id="remark" type="text" class="validate" [(ngModel)]="remark"  [ngModelOptions]="{standalone: true}">
+              <label for="remark">remark</label>
+            </div>
+            <div class="input-field col s2">
+              <input placeholder="1000000000000" disabled id="uid" type="text" class="validate" [(ngModel)]="userId"  [ngModelOptions]="{standalone: true}">
+              <label for="uid">UID</label>
+            </div>
+          </form>
+        </div>
+        <div class="row">
+          <div class="input-field col s2">
+            <a class="waves-effect waves-light btn" (click)="lookupTracker()"><i class="material-icons">launch</i>Lookup</a>
+          </div>
+          <div class="input-field col s2">
+            <a class="waves-effect waves-light btn" (click)="userId=null;username=null;remark=null"><i class="material-icons">replay</i>Reset</a>
+          </div>
+        </div>
+        <div class="row" *ngIf="isLookupInfoLoaded">
+          <div class="col s4">
+            <img src="https://twitter.com/{{lookupInfo.screen_name}}/profile_image?size=original" alt="{{lookupInfo.screen_name}}'s Avatar" class="responsive-img">
+          </div>
+          <div class="col s4">
+            <span>Follower:{{lookupInfo.followers_count}}</span>
+            <br>
+            <span>Remark: {{remark}}</span>
+          </div>
+          <div class="input-field col s2">
+            <a class="waves-effect waves-light btn" (click)="addTracker()"><i class="material-icons">plus_one</i>Add Tracker</a>
+          </div>
+        </div>
+      </div>
+    </li>
+  </ul>
+  <!--Table Control-->
+  <div class="col s12">
+    <div class="row">
+      <div class="input-field col s8">
+        <i class="material-icons prefix">search</i>
+        <input type="text" #autocompleteInput id="autocomplete-input" class="autocomplete" >
+        <label for="autocomplete-input">Handle</label>
+      </div>
+      <div class="input-field col s2">
+        <a class="waves-effect waves-light btn" (click)="loadTrackers()"><i class="material-icons">refresh</i>Refresh</a>
+      </div>
+      <div class="input-field col s2">
+        <a class="waves-effect waves-light btn" (click)="sortByDate()"><i class="material-icons">import_export</i>Sort By Date</a>
+      </div>
+    </div>
+  </div>
+  <hr>
+  <!--Table Section-->
+  <table class="responsive-table striped">
+    <thead>
+    <tr>
+      <th>Handle</th>
+      <th>UID</th>
+      <th>Remark</th>
+      <th>Created At</th>
+      <th>Action</th>
+    </tr>
+    </thead>
+    <tbody *ngIf="trackerListLoaded">
+    <tr *ngFor="let tracker of trackerList;" [id]="tracker.displayName">
+      <th>
+        <img src="https://twitter.com/{{tracker.displayName}}/profile_image?size=bigger" alt="{{tracker.displayName}}'s Avatar" class="responsive-img">
+        <a class="intent-link" href="https://twitter.com/intent/user?screen_name={{tracker.displayName}}">{{tracker.displayName}}</a>
+      </th>
+      <th>{{tracker.uid}}</th>
+      <th>{{tracker.remark}}</th>
+      <th>{{tracker.createdAt | date:'yyyy.MM.dd'}}</th>
+      <th><a class="waves-effect red darken-1 btn-small" (click)="deleteTracker(tracker.uid)">Delete</a></th>
+    </tr>
+    </tbody>
+  </table>
+</div>

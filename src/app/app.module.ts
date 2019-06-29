@@ -3,16 +3,18 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HomeComponent } from './views/pages/views/home/home.component';
+import { HomeComponent } from './views/pages/home/home.component';
 import { SidenavComponent } from './views/particals/sidenav/sidenav.component';
-import { TrackerComponent } from './views/pages/views/pages/tracker/tracker.component';
-import { TagComponent } from './views/pages/views/pages/tag/tag.component';
-import { StatComponent } from './views/pages/views/pages/stat/stat.component';
-import { LogComponent } from './views/pages/views/pages/log/log.component';
+import { TrackerComponent } from './views/pages/tracker/tracker.component';
+import { TagComponent } from './views/pages/tag/tag.component';
+import { StatComponent } from './views/pages/stat/stat.component';
+import { LogComponent } from './views/pages/log/log.component';
 import {FormsModule} from '@angular/forms';
 import {ChartsModule} from 'ng2-charts';
-import {HttpClientJsonpModule} from '@angular/common/http';
+import {HttpClientJsonpModule, HttpClientModule} from '@angular/common/http';
 import {LogService} from './providers/log.service';
+import {TrackerService} from './providers/tracker.service';
+import {DatePipe} from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -29,10 +31,13 @@ import {LogService} from './providers/log.service';
     AppRoutingModule,
     FormsModule,
     ChartsModule,
-    HttpClientJsonpModule
+    HttpClientJsonpModule,
+    HttpClientModule
   ],
   providers: [
-    LogService
+    LogService,
+    TrackerService,
+    DatePipe
   ],
   bootstrap: [AppComponent]
 })

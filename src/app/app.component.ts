@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styles: ['main{margin-left: 305px;}']
+  styleUrls: ['./app.component.css']
 })
 export class AppComponent {
   title = 'TwBladeFrontEnd';

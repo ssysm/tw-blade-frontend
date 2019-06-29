@@ -1,0 +1,49 @@
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <label for="range_before">Before</label>
+      <input type="datetime-local" id="range_before"
+             name="range-before" value="2018-06-12T19:30" [(ngModel)]="beforeLogTime">
+    </div>
+    <div class="col">
+      <label for="range_after">After</label>
+      <input type="datetime-local" id="range_after"
+             name="range_after" value="" [(ngModel)]="afterLogTime">
+    </div>
+    <div class="col" style="padding: 24px;" >
+      <a class="waves-effect waves-light btn" (click)="loadRangeLog()"><i class="material-icons">search</i>Search</a>
+      <a class="waves-effect waves-light btn" (click)="loadLatestLog()" style="margin-left: 10px"><i class="material-icons">replay</i>Refresh Latest</a>
+    </div>
+  </div>
+  <hr>
+  <div class="row">
+    <div class="col m8">
+      <canvas baseChart width="400" height="400"
+              *ngIf="isLogLoaded"
+              [datasets]="lineChartData"
+              [labels]="lineChartLabels"
+              [options]="lineChartOptions"
+              [legend]="true"
+              [chartType]="'line'"
+      ></canvas>
+    </div>
+    <div class="col m4" id="table">
+      <table class="striped responsive-table">
+        <thead>
+          <tr>
+            <th>Failed Count</th>
+            <th>Job Started</th>
+            <th>Job Finished</th>
+          </tr>
+        </thead>
+        <tbody *ngIf="isLogLoaded">
+          <tr *ngFor="let log of logData">
+            <td>{{log.failedList.length}}</td>
+            <td>{{log.date | date:'medium'}}</td>
+            <td>{{log.finishedAt | date:'medium'}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

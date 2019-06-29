@@ -1,14 +1,19 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import {HomeComponent} from './views/pages/views/home/home.component';
-import {TrackerComponent} from './views/pages/views/pages/tracker/tracker.component';
-import {TagComponent} from './views/pages/views/pages/tag/tag.component';
-import {LogComponent} from './views/pages/views/pages/log/log.component';
+import {HomeComponent} from './views/pages/home/home.component';
+import {TrackerComponent} from './views/pages/tracker/tracker.component';
+import {TagComponent} from './views/pages/tag/tag.component';
+import {LogComponent} from './views/pages/log/log.component';
+import {StatComponent} from './views/pages/stat/stat.component';
 
 const routes: Routes = [
   {
     path: '',
     component: HomeComponent
+  },
+  {
+    path: 'statistic',
+    component: StatComponent
   },
   {
     path: 'tracker',

@@ -1,12 +1,10 @@
-declare namespace TrackerInterface {
+declare namespace LogInterface {
 
   export interface Result {
-    createdAt: Date;
-    remark?: any;
-    tags: any[];
+    failedList: any[];
     _id: string;
-    uid: any;
-    displayName: string;
+    date: Date;
+    finishedAt: Date;
     __v: number;
   }
 
